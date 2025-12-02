@@ -15,12 +15,24 @@ export default function Counter() {
   };
   return (
     <>
-     <h1 className="text-center">Counter</h1>
-    <div className="flex justify-center items-center h-[80vh] text-9xl gap-5">
-      <button onClick={des} className="bg-orange-500 px-15 rounded-3xl">-</button>
-      <p>{counter}</p>
-      <button onClick={inc} className="bg-purple-600 px-15 rounded-3xl">+</button>
-    </div>
+      <div className="h-screen flex justify-center flex-col items-center gap-40">
+        <h1 className="text-center text-9xl">Counter</h1>
+        <div className="flex justify-center items-center text-5xl gap-5">
+          <button
+            onClick={des}
+            className="bg-orange-500  p-10 px-15 rounded-3xl"
+          >
+            -
+          </button>
+          <p className="text-9xl">{counter}</p>
+          <button
+            onClick={inc}
+            className="bg-purple-600 p-10 px-14 rounded-3xl"
+          >
+            +
+          </button>
+        </div>
+      </div>
     </>
   );
 }
