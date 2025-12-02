@@ -2,7 +2,7 @@ import React from "react";
 
 export default function CardBody({ cards }) {
     if (cards.length === 0) {
-    return <p className="text-red-500">Data tidak ditemukan</p>;
+    return <p className="text-gray-500 text-center">Charcter not found!</p>;
   }
   return (
     <>
