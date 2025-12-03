@@ -14,10 +14,10 @@ export default function HomePege() {
     <>
       <Header title="Minitask 4" />
       <main className="p-20 flex gap-5">
-        <div className="grid grid-cols-5 bg-amber-300 w-[75%] h-[70vh] p-10 border-4 rounded-4xl">
+        <div className="grid grid-cols-5 bg-amber-300 w-[75%] h-[70vh] p-10 border-4 rounded-4xl gap-2">
           {review.map((item, index) => {
             return (
-              <div key={index} className="bg-amber-100 h-40 rounded-2xl p-2">
+              <div key={index} className="bg-amber-100 h-40 rounded-2xl p-2 border-2">
                 <h3 className="text-center p-2">{item.name}</h3>
                 <hr />
                 <p className="p-2">{item.review}</p>

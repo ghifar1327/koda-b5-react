@@ -25,7 +25,11 @@ export default function InputHandler({ setLogin }) {
   return (
     <>
       <form action="" onSubmit={handleSubmit} className="flex justify-center">
-        <div className="flex flex-col gap-3 border border-gray-400 p-5">
+        <div className="border border-gray-400 py-[74px] px-[73px]">
+        <div className="flex flex-col gap-[25px]  w-[400px]">
+          <h1 className="text-3xl">Welcome Back 🙌</h1>
+          <p className="text-gray-400 text-xl" >Sign in with your data that you entered during
+your registration</p>
           <label htmlFor="email">
             <p>Email</p>
             <input
@@ -33,7 +37,7 @@ export default function InputHandler({ setLogin }) {
               name="email"
               value={form.email}
               onChange={hendleChange}
-              className="border"
+              className="border w-[400px] text-4xl p-3"
             />
           </label>
           <label htmlFor="password">
@@ -43,9 +47,12 @@ export default function InputHandler({ setLogin }) {
               name="password"
               value={form.password}
               onChange={hendleChange}
-              className="border"
+              className="border w-[400px] text-4xl p-3"
             />
           </label>
+          <div className="flex justify-end">
+            <button className="text-blue-500">forget your password?</button>
+          </div>
           <div>
             <button
               type="submit"
@@ -54,6 +61,7 @@ export default function InputHandler({ setLogin }) {
               Submit
             </button>
           </div>
+        </div>
         </div>
       </form>
     </>
