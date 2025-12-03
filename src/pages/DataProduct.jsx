@@ -9,7 +9,7 @@ export default function DataProduct() {
   ]);
   return (
     <>
-    <Header title={'Data Product'}/>
+      <Header title="Data Product" />
       <main>
         <header className="text-center">Form Input Data Product</header>
         <InputProduct setDatas={setDatas} />

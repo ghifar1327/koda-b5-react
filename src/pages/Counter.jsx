@@ -16,7 +16,7 @@ export default function Counter() {
   };
   return (
     <>
-    <Header title={'Counter Number'}/>
+      <Header title="Counter Number" />
       <div className="h-screen flex justify-center flex-col items-center gap-40">
         <h1 className="text-center text-9xl">Counter</h1>
         <div className="flex justify-center items-center text-5xl gap-5">

@@ -45,7 +45,7 @@ export default function RickAndMorty() {
 
   return (
     <>
-      <Header title={"Rick And morty"} />
+      <Header title="Rick And morty" />
       <main className="p-10">
         <form
           action=""
