@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import CardBody from "../components/CardBody";
+import Header from "../components/Header";
 
 export default function RickAndMorty() {
   const [cards, setCards] = useState([]);
@@ -7,18 +8,21 @@ export default function RickAndMorty() {
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("");
   useEffect(() => {
-    fetch("https://rickandmortyapi.com/api/character?")
+    fetch("https://rickandmortyapi.com/api/character?page=1")
       .then((res) => res.json())
       .then((data) => {
         const detailChart = data.results.map((item) => {
           return {
             image: item.image,
             name: item.name,
-            status: item.status,
+            species: item.species,
           };
         });
         setCards(detailChart);
-        console.log(detailChart);
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
       });
   }, []);
 
@@ -28,7 +32,9 @@ export default function RickAndMorty() {
   };
   const filtered = cards.filter((item) => {
     const filterName = item.name.toLowerCase().includes(keyword.toLowerCase());
-    const filterSelect = statusFilter.toLocaleLowerCase() === "" || item.status.toLowerCase() === statusFilter.toLowerCase();
+    const filterSelect =
+      statusFilter.toLocaleLowerCase() === "" ||
+      item.species.toLowerCase() === statusFilter.toLowerCase();
     return filterName && filterSelect;
   });
   const handleReset = () => {
@@ -39,19 +45,30 @@ export default function RickAndMorty() {
 
   return (
     <>
-      <header className="text-center text-6xl font-bold">Rick And Morty</header>
+      <Header title={"Rick And morty"} />
       <main className="p-10">
         <form
           action=""
           onSubmit={handleSubmit}
           className="flex justify-center gap-2 mb-5"
         >
-            <select className="border-2 px-2 rounded-md" value={statusFilter} onChange={(e)=> setStatusFilter(e.target.value)}>
-                <option value="">All</option>
-                <option value="Alive">Alive</option>
-                <option value="Dead">Dead</option>
-                <option value="unknown">Unknown</option>
-            </select>
+          <select
+            className="border-2 px-2 rounded-md"
+            value={statusFilter}
+            onChange={(e) => setStatusFilter(e.target.value)}
+          >
+            <option value="">All Species</option>
+            <option value="human">Human</option>
+            <option value="alien">Alien</option>
+            <option value="humanoid">Humanoid</option>
+            <option value="poopybutthole">Poopybutthole</option>
+            <option value="mythological creature">Mythological Creature</option>
+            <option value="robot">Robot</option>
+            <option value="animal">Animal</option>
+            <option value="cronenberg">Cronenberg</option>
+            <option value="disease">Disease</option>
+            <option value="unknown">Unknown</option>
+          </select>
           <input
             type="text"
             name="search"

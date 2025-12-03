@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import InputProduct from "../components/InputProduct";
 import TableProduct from "../components/TableProduct";
+import Header from "../components/Header";
 
 export default function DataProduct() {
   const [datas, setDatas] = useState([
@@ -8,6 +9,7 @@ export default function DataProduct() {
   ]);
   return (
     <>
+    <Header title={'Data Product'}/>
       <main>
         <header className="text-center">Form Input Data Product</header>
         <InputProduct setDatas={setDatas} />

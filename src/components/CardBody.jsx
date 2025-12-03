@@ -12,7 +12,7 @@ export default function CardBody({ cards }) {
             <div key={index}>
               <img src={item.image} alt={item.name} />
               <h2>{item.name}</h2>
-              <p>status: {item.status}</p>
+              <p>species: {item.species}</p>
             </div>
           );
         })}

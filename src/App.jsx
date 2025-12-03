@@ -1,5 +1,6 @@
 import Counter from "./pages/Counter";
 import DataProduct from "./pages/DataProduct";
+import HomePege from "./pages/HomePege";
 import RickAndMorty from "./pages/RickAndMorty";
 
 function App() {
@@ -7,7 +8,8 @@ function App() {
     <>
       {/* <Counter /> */}
       {/* <DataProduct></DataProduct> */}
-      <RickAndMorty/>
+      {/* <RickAndMorty/> */}
+      <HomePege/>
     </>
   );
 }
