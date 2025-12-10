@@ -1,50 +1,50 @@
 import React from "react";
 import { Link } from "react-router";
-
-/**
- * header component
- * @param {string} props.title the title of the header
- * @returns {JSX.Element}
- */
+import { useAuth } from "../contexts/auth/AuthContext";
+import { useContext } from "react";
+import { themeContext } from "../contexts/theme/themeContext";
 
 export default function Header({ title }) {
+  const { theme, toggleTheme } = useContext(themeContext);
+  const { user, logout } = useAuth();
+  console.log(user)
   return (
-    <header className="flex justify-between p-5 px-20 bg-amber-800 text-amber-100 items-center mb-5">
-      <h1 className="font-bold text-2xl">{title}</h1>
-      <ul className="flex gap-5">
-        <li className="hover:text-2xl 
-         transition-all 
-         duration-300 
-         ease-in-out">
-          <Link to="/minitask1">Couter Number</Link>
-        </li>
-        <li className="hover:text-2xl 
-         transition-all 
-         duration-300 
-         ease-in-out">
-          <Link to="/minitask2">Data Product</Link>
-        </li>
-        <li className="hover:text-2xl 
-         transition-all 
-         duration-300 
-         ease-in-out">
-          <Link to="/minitask3">Rick And Morty</Link>
-        </li>
-        <li
-          className="hover:text-2xl 
-         transition-all 
-         duration-300 
-         ease-in-out"
+    <header className={`flex justify-between p-5 px-20 ${theme.style}`}>
+      <div className="flex items-center gap-10">
+        <h1 className="text-2xl font-bold">{title}</h1>
+
+        <button
+          onClick={toggleTheme}
+          className="px-3 py-1 border rounded hover:bg-gray-300 transition"
         >
-          <Link to="/loginForm">Login form</Link>
-        </li>
+          {theme.mode === "dark" ? "Light Mode" : "Dark Mode"}
+        </button>
+      </div>
+
+      <ul className="flex gap-5">
+        <li><Link to="/minitask1">Counter</Link></li>
+        <li><Link to="/minitask2">Product</Link></li>
+        <li><Link to="/minitask3">Rick & Morty</Link></li>
+        <li><Link to="/formsurvey">Form Survey</Link></li>
       </ul>
-      <p className="font-bold text-2xl hover:text-3xl 
-         transition-all 
-         duration-300 
-         ease-in-out">
-        <Link to="/">Home</Link>
-      </p>
+
+      <div className="flex items-center gap-3">
+        {user ? (
+          <>
+            <p>Welcome, {user.username}</p>
+            <button
+              onClick={logout}
+              className="px-3 py-1 bg-red-500 text-white rounded">
+              Logout
+            </button>
+          </>
+        ) : (
+          <Link to="/login" className="px-3 py-1 bg-blue-500 text-white rounded">
+            Login
+          </Link>
+        )}
+        <Link to="/" className="font-bold">Home</Link>
+      </div>
     </header>
   );
 }

@@ -1,69 +1,51 @@
-import React, { useState } from "react";
+import { useNavigate } from "react-router";
+import useInput from "../hooks/useInput";
 
 export default function InputHandler({ setLogin }) {
-  const [form, setForm] = useState({
-    email: "",
-    password: "",
-  });
+  const email = useInput("", true);
+  const password = useInput("");
+  const navigate = useNavigate()
+
   function handleSubmit(e) {
     e.preventDefault();
-    const userData = {};
-    Object.assign(userData, { email: form.email });
-    Object.assign(userData, { password: form.password });
-    setLogin(userData);
-    setForm({
-      email: "",
-      password: "",
-    });
-  }
-  function hendleChange(e) {
-    setForm((form) => {
-      return { ...form, [e.target.name]: [e.target.value] };
-    });
+    setLogin({ email: email.value, password: password.value });
+    email.reset();
+    password.reset();
+    navigate('/')
   }
 
   return (
-    <>
-      <form action="" onSubmit={handleSubmit} className="flex justify-center">
-        <div className="border border-gray-400 py-[74px] px-[73px]">
-        <div className="flex flex-col gap-[25px]  w-[400px]">
-          <h1 className="text-3xl">Welcome Back 🙌</h1>
-          <p className="text-gray-400 text-xl" >Sign in with your data that you entered during
-your registration</p>
-          <label htmlFor="email">
-            <p>Email</p>
-            <input
-              type="email"
-              name="email"
-              value={form.email}
-              onChange={hendleChange}
-              className="border w-[400px] text-4xl p-3"
-            />
-          </label>
-          <label htmlFor="password">
-            <p>Password</p>
-            <input
-              type="password"
-              name="password"
-              value={form.password}
-              onChange={hendleChange}
-              className="border w-[400px] text-4xl p-3"
-            />
-          </label>
-          <div className="flex justify-end">
-            <button className="text-blue-500">forget your password?</button>
-          </div>
-          <div>
-            <button
-              type="submit"
-              className="rounded-sm bg-blue-600 text-white w-full p-1"
-            >
-              Submit
-            </button>
-          </div>
-        </div>
-        </div>
-      </form>
-    </>
+    <form onSubmit={handleSubmit} className="flex justify-center mt-20">
+      <div className="border p-10 w-[400px] flex flex-col gap-5">
+        <h1 className="text-3xl font-bold">Welcome Back 🙌</h1>
+
+        <label>
+          <p>Email</p>
+          <input
+            type="email"
+            value={email.value}
+            onChange={email.onChange}
+            className="border p-2 w-full"
+          />
+        </label>
+
+        <label>
+          <p>Password</p>
+          <input
+            type="password"
+            value={password.value}
+            onChange={password.onChange}
+            className="border p-2 w-full"
+          />
+        </label>
+
+        <button
+          type="submit"
+          className="bg-blue-500 text-white py-2 rounded"
+        >
+          Submit
+        </button>
+      </div>
+    </form>
   );
 }
