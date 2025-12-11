@@ -28,12 +28,16 @@ export function AuthProvider({ children }) {
   }, [state]);
 
   const login = (userData) => dispatch({ type: "LOGIN", payload: userData });
-  const logout = () => dispatch({ type: "LOGOUT" });
-  const editProfile = (payload) =>
-    dispatch({ type: "EDIT_PROFILE", payload });
+  const logout = () => {
+    localStorage.removeItem("auth");
+    dispatch({ type: "LOGOUT" });
+  };
+  const editProfile = (payload) => dispatch({ type: "EDIT_PROFILE", payload });
 
   return (
-    <AuthContext.Provider value={{ user: state.user, login, logout, editProfile }}>
+    <AuthContext.Provider
+      value={{ user: state.user, login, logout, editProfile }}
+    >
       {children}
     </AuthContext.Provider>
   );
